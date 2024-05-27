@@ -29,7 +29,7 @@ public class GradeOutput extends JFrame {
         lblQuiz1 = new JLabel("Milestone 1:");
         lblQuiz2 = new JLabel("Milestone 2:");
         lblQuiz3 = new JLabel("Terminal Assessment:");
-        lblAveGrade = new JLabel("Average Grade:");
+        lblAveGrade = new JLabel("Final Grade:");
        
         // Create Student Name textfield
         txtStudentName = new JTextField(30);
@@ -67,6 +67,19 @@ public class GradeOutput extends JFrame {
         // Define the panel to hold the components  
         JPanel panel = new JPanel();
         SpringLayout layout = new SpringLayout();
+        layout.putConstraint(SpringLayout.NORTH, closeButton, 19, SpringLayout.SOUTH, txtAveGrade);
+        layout.putConstraint(SpringLayout.WEST, txtQuiz3, 24, SpringLayout.EAST, lblQuiz3);
+        layout.putConstraint(SpringLayout.NORTH, txtAveGrade, -3, SpringLayout.NORTH, lblAveGrade);
+        layout.putConstraint(SpringLayout.WEST, txtAveGrade, 0, SpringLayout.WEST, txtQuiz3);
+        layout.putConstraint(SpringLayout.NORTH, txtQuiz3, -3, SpringLayout.NORTH, lblQuiz3);
+        layout.putConstraint(SpringLayout.WEST, txtQuiz1, 51, SpringLayout.EAST, lblQuiz1);
+        layout.putConstraint(SpringLayout.NORTH, txtQuiz2, -3, SpringLayout.NORTH, lblQuiz2);
+        layout.putConstraint(SpringLayout.EAST, txtQuiz2, 0, SpringLayout.EAST, txtQuiz1);
+        layout.putConstraint(SpringLayout.NORTH, txtQuiz1, -3, SpringLayout.NORTH, lblQuiz1);
+        layout.putConstraint(SpringLayout.NORTH, txtStudentNo, -3, SpringLayout.NORTH, lblStudentNo);
+        layout.putConstraint(SpringLayout.EAST, txtStudentNo, 0, SpringLayout.EAST, txtStudentName);
+        layout.putConstraint(SpringLayout.NORTH, txtStudentName, -3, SpringLayout.NORTH, lblStudentName);
+        layout.putConstraint(SpringLayout.WEST, txtStudentName, 6, SpringLayout.EAST, lblStudentName);
         panel.setSize(300, 300);
         panel.setLayout(layout);
        
@@ -96,33 +109,16 @@ public class GradeOutput extends JFrame {
        
         // Set label and textfield position: top and bottom
         layout.putConstraint(SpringLayout.NORTH, lblStudentName, 6, SpringLayout.NORTH, panel);
-        layout.putConstraint(SpringLayout.NORTH, txtStudentName, 6, SpringLayout.NORTH, panel);
         layout.putConstraint(SpringLayout.NORTH, lblStudentNo, 10, SpringLayout.SOUTH, lblStudentName);
-        layout.putConstraint(SpringLayout.NORTH, txtStudentNo, 6, SpringLayout.SOUTH, txtStudentName);
         layout.putConstraint(SpringLayout.NORTH, lblQuiz1, 10, SpringLayout.SOUTH, lblStudentNo);
-        layout.putConstraint(SpringLayout.NORTH, txtQuiz1, 6, SpringLayout.SOUTH, txtStudentNo);
         layout.putConstraint(SpringLayout.NORTH, lblQuiz2, 10, SpringLayout.SOUTH, lblQuiz1);
-        layout.putConstraint(SpringLayout.NORTH, txtQuiz2, 6, SpringLayout.SOUTH, txtQuiz1);
         layout.putConstraint(SpringLayout.NORTH, lblQuiz3, 10, SpringLayout.SOUTH, lblQuiz2);
-        layout.putConstraint(SpringLayout.NORTH, txtQuiz3, 6, SpringLayout.SOUTH, txtQuiz2);
         layout.putConstraint(SpringLayout.NORTH, lblAveGrade, 10, SpringLayout.SOUTH, lblQuiz3);
-        layout.putConstraint(SpringLayout.NORTH, txtAveGrade, 6, SpringLayout.SOUTH, txtQuiz3);
-       
-        // Set textfield position: right
-        layout.putConstraint(SpringLayout.WEST, txtStudentName, 6, SpringLayout.EAST, lblStudentName);
-        layout.putConstraint(SpringLayout.WEST, txtStudentNo, 24, SpringLayout.EAST, lblStudentNo);
-        layout.putConstraint(SpringLayout.WEST, txtQuiz1, 51, SpringLayout.EAST, lblQuiz1);
-        layout.putConstraint(SpringLayout.WEST, txtQuiz2, 51, SpringLayout.EAST, lblQuiz2);
-        layout.putConstraint(SpringLayout.WEST, txtQuiz3, 51, SpringLayout.EAST, lblQuiz3);
-        layout.putConstraint(SpringLayout.WEST, txtAveGrade, 51, SpringLayout.EAST, lblAveGrade);
-       
-        // Set button position
-        layout.putConstraint(SpringLayout.NORTH, closeButton, 6, SpringLayout.SOUTH, txtAveGrade);
         layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, closeButton, 0, SpringLayout.HORIZONTAL_CENTER, panel);
 
 
         //Add panel to frame
-        add(panel);
+        getContentPane().add(panel);
 
 
         // Add an ActionListener to the button

@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
@@ -56,7 +57,7 @@ public class GradeCalculator extends JFrame {
 	        txtStudentName = new JTextField(30);
 	        lblStudentNo = new JLabel("Student No:");
 	        txtStudentNo = new JTextField(30);
-	        lblMs1 = new JLabel("Milestone 1:");
+	        lblMs1 = new JLabel("Milestone	 1:");
 	        txtQuiz1 = new JTextField(10);
 	        lblMs2 = new JLabel("Milestone 2:");
 	        txtQuiz2 = new JTextField(10);
@@ -107,14 +108,19 @@ public class GradeCalculator extends JFrame {
 	        // Define the panel to hold the components  
 	        JPanel panel = new JPanel();
 	        SpringLayout layout = new SpringLayout();
-	        layout.putConstraint(SpringLayout.NORTH, txtQuiz2, 6, SpringLayout.SOUTH, txtQuiz1);
-	        layout.putConstraint(SpringLayout.NORTH, txtQuiz1, 6, SpringLayout.SOUTH, txtStudentNo);
-	        layout.putConstraint(SpringLayout.EAST, txtQuiz1, 0, SpringLayout.EAST, txtQuiz2);
-	        layout.putConstraint(SpringLayout.NORTH, txtQuiz3, 6, SpringLayout.SOUTH, txtQuiz2);
-	        layout.putConstraint(SpringLayout.EAST, txtQuiz2, 0, SpringLayout.EAST, txtQuiz3);
-	        layout.putConstraint(SpringLayout.NORTH, txtStudentNo, 9, SpringLayout.SOUTH, txtStudentName);
+	        layout.putConstraint(SpringLayout.NORTH, calculateButton, 32, SpringLayout.SOUTH, txtQuiz3);
+	        layout.putConstraint(SpringLayout.SOUTH, calculateButton, -28, SpringLayout.SOUTH, panel);
+	        layout.putConstraint(SpringLayout.NORTH, txtQuiz3, -3, SpringLayout.NORTH, lblTa3);
+	        layout.putConstraint(SpringLayout.WEST, txtQuiz3, 48, SpringLayout.EAST, lblTa3);
+	        layout.putConstraint(SpringLayout.WEST, calculateButton, 177, SpringLayout.WEST, panel);
+	        layout.putConstraint(SpringLayout.NORTH, txtQuiz1, -3, SpringLayout.NORTH, lblMs1);
+	        layout.putConstraint(SpringLayout.WEST, txtQuiz1, 0, SpringLayout.WEST, txtQuiz2);
+	        layout.putConstraint(SpringLayout.NORTH, txtQuiz2, -3, SpringLayout.NORTH, lblMs2);
+	        layout.putConstraint(SpringLayout.EAST, txtQuiz2, -133, SpringLayout.EAST, panel);
+	        layout.putConstraint(SpringLayout.WEST, txtStudentName, 10, SpringLayout.EAST, lblStudentName);
+	        layout.putConstraint(SpringLayout.NORTH, txtStudentNo, -3, SpringLayout.NORTH, lblStudentNo);
+	        layout.putConstraint(SpringLayout.WEST, txtStudentNo, 0, SpringLayout.WEST, txtStudentName);
 	        layout.putConstraint(SpringLayout.NORTH, txtStudentName, -3, SpringLayout.NORTH, lblStudentName);
-	        layout.putConstraint(SpringLayout.EAST, txtStudentName, 0, SpringLayout.EAST, txtStudentNo);
 	        panel.setSize(300, 300);
 	        panel.setLayout(layout);
 	       
@@ -145,11 +151,6 @@ public class GradeCalculator extends JFrame {
 	        layout.putConstraint(SpringLayout.NORTH, lblMs1, 10, SpringLayout.SOUTH, lblStudentNo);
 	        layout.putConstraint(SpringLayout.NORTH, lblMs2, 10, SpringLayout.SOUTH, lblMs1);
 	        layout.putConstraint(SpringLayout.NORTH, lblTa3, 10, SpringLayout.SOUTH, lblMs2);
-	        layout.putConstraint(SpringLayout.WEST, txtStudentNo, 24, SpringLayout.EAST, lblStudentNo);
-	        layout.putConstraint(SpringLayout.WEST, txtQuiz3, 51, SpringLayout.EAST, lblTa3);
-	       
-	        // Set button position
-	        layout.putConstraint(SpringLayout.NORTH, calculateButton, 6, SpringLayout.SOUTH, txtQuiz3);
 	        layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, calculateButton, 0, SpringLayout.HORIZONTAL_CENTER, panel);
 
 
@@ -159,6 +160,7 @@ public class GradeCalculator extends JFrame {
 	        
 	     // Add an ActionListener to the button
 	        JButton btnClose = new JButton("Close");
+	        layout.putConstraint(SpringLayout.EAST, calculateButton, -108, SpringLayout.WEST, btnClose);
 	        btnClose.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
 	                   dispose();
@@ -172,7 +174,36 @@ public class GradeCalculator extends JFrame {
 	        // Add an ActionListener to the button
 	        calculateButton.addActionListener((ActionListener) new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
-	                // Instantiate Student class
+	            	
+	            	try {
+	                    // Read input values
+	                    double milestone1 = Double.parseDouble(txtQuiz1.getText());
+	                    double milestone2 = Double.parseDouble(txtQuiz2.getText());
+	                    double terminalAssessment = Double.parseDouble(txtQuiz3.getText());
+
+	                    // Validate input values
+	                    if (milestone1 < 0 || milestone1 > 25) {
+	                        throw new IllegalArgumentException("Milestone 1 must be between 0 and 25.");
+	                    }
+	                    if (milestone2 < 0 || milestone2 > 40) {
+	                        throw new IllegalArgumentException("Milestone 2 must be between 0 and 40.");
+	                    }
+	                    if (terminalAssessment < 0 || terminalAssessment > 35) {
+	                        throw new IllegalArgumentException("Terminal Assessment must be between 0 and 35.");
+	                    }
+	                    
+	                }
+	                    
+	                    
+	            		catch (NumberFormatException ex) {
+	            			JOptionPane.showMessageDialog(GradeCalculator.this, "Please enter valid numerical values.","Input Error", JOptionPane.ERROR_MESSAGE);
+	            			throw ex;
+	            		}
+	            		catch (IllegalArgumentException ex) {
+	            			JOptionPane.showMessageDialog(GradeCalculator.this, ex.getMessage(),"Input Error", JOptionPane.ERROR_MESSAGE);
+	            			throw ex;
+	                	}
+	            
 	                Student stud = new Student();
 	               
 	                // Assign textfield values to stud object
