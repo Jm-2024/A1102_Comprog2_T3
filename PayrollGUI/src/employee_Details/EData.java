@@ -32,7 +32,6 @@ import javax.swing.JSlider;
 import javax.swing.JLayeredPane;
 import javax.swing.JSplitPane;
 import javax.swing.border.LineBorder;
-import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
 
 public class EData extends JFrame {
@@ -50,9 +49,9 @@ public class EData extends JFrame {
 	private JTextField txtnetpay;
 	private JTextField txttax;
 	private JTextField txtxssscontri;
-	private JTextField pagibigcontri;
+	private JTextField txtpagibigcontri;
 	private JTextField txtphealth;
-	private JTextField txtsssdeduct;
+	private JTextField txtsssdeduction;
 	private JTextField txtpagibigdeduct;
 	private JTextField txtphealthdeduct;
 	private JTextField txtmonthlyrate;
@@ -287,7 +286,6 @@ public class EData extends JFrame {
 		txtEarnings.setBounds(101, 306, 128, 30);
 		layeredPane.add(txtEarnings);
 		txtEarnings.setColumns(10);
-		layeredPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblearnings, lblHours, lblTaxable, lblDailyrate, txtDailyRate, lblHolidayPay, txtHpay, txtHpay2, lblOvertimepay, txtOpay, txtOpay2, separator_2, separator_2_2, lblTotalEarnings, txtEarnings}));
 		
 		JLayeredPane layeredPane_1 = new JLayeredPane();
 		layeredPane_1.setBorder(new LineBorder(new Color(0, 0, 0), 2));
@@ -356,17 +354,17 @@ public class EData extends JFrame {
 		lblLoanDeductions.setBounds(10, 190, 128, 14);
 		layeredPane_1.add(lblLoanDeductions);
 		
-		JLabel lblWithholdingTax_1_1 = new JLabel("SSS deduction");
-		lblWithholdingTax_1_1.setBounds(10, 215, 128, 14);
-		layeredPane_1.add(lblWithholdingTax_1_1);
+		JLabel lblsssdedcut = new JLabel("SSS deduction");
+		lblsssdedcut.setBounds(10, 215, 128, 14);
+		layeredPane_1.add(lblsssdedcut);
 		
-		JLabel lblWithholdingTax_1_2 = new JLabel("PhilHealth deduction");
-		lblWithholdingTax_1_2.setBounds(10, 260, 128, 14);
-		layeredPane_1.add(lblWithholdingTax_1_2);
+		JLabel lblPhilHealthdeduct = new JLabel("PhilHealth deduction");
+		lblPhilHealthdeduct.setBounds(10, 253, 128, 14);
+		layeredPane_1.add(lblPhilHealthdeduct);
 		
-		JLabel lblWithholdingTax_1_3 = new JLabel("Pagibig deduction");
-		lblWithholdingTax_1_3.setBounds(10, 235, 128, 14);
-		layeredPane_1.add(lblWithholdingTax_1_3);
+		JLabel lblPagibigdeduct = new JLabel("Pagibig deduction");
+		lblPagibigdeduct.setBounds(10, 235, 128, 14);
+		layeredPane_1.add(lblPagibigdeduct);
 		
 		txtxssscontri = new JTextField();
 		txtxssscontri.setEditable(false);
@@ -375,12 +373,12 @@ public class EData extends JFrame {
 		txtxssscontri.setBounds(148, 128, 89, 14);
 		layeredPane_1.add(txtxssscontri);
 		
-		pagibigcontri = new JTextField();
-		pagibigcontri.setEditable(false);
-		pagibigcontri.setColumns(10);
-		pagibigcontri.setBackground(Color.WHITE);
-		pagibigcontri.setBounds(148, 145, 89, 14);
-		layeredPane_1.add(pagibigcontri);
+		txtpagibigcontri = new JTextField();
+		txtpagibigcontri.setEditable(false);
+		txtpagibigcontri.setColumns(10);
+		txtpagibigcontri.setBackground(Color.WHITE);
+		txtpagibigcontri.setBounds(148, 145, 89, 14);
+		layeredPane_1.add(txtpagibigcontri);
 		
 		txtphealth = new JTextField();
 		txtphealth.setEditable(false);
@@ -389,12 +387,12 @@ public class EData extends JFrame {
 		txtphealth.setBounds(148, 162, 89, 14);
 		layeredPane_1.add(txtphealth);
 		
-		txtsssdeduct = new JTextField();
-		txtsssdeduct.setEditable(false);
-		txtsssdeduct.setColumns(10);
-		txtsssdeduct.setBackground(Color.WHITE);
-		txtsssdeduct.setBounds(148, 215, 89, 14);
-		layeredPane_1.add(txtsssdeduct);
+		txtsssdeduction = new JTextField();
+		txtsssdeduction.setEditable(false);
+		txtsssdeduction.setColumns(10);
+		txtsssdeduction.setBackground(Color.WHITE);
+		txtsssdeduction.setBounds(148, 215, 89, 14);
+		layeredPane_1.add(txtsssdeduction);
 		
 		txtpagibigdeduct = new JTextField();
 		txtpagibigdeduct.setEditable(false);
@@ -404,11 +402,11 @@ public class EData extends JFrame {
 		layeredPane_1.add(txtpagibigdeduct);
 		
 		txtphealthdeduct = new JTextField();
+		txtphealthdeduct.setBounds(148, 253, 89, 14);
+		layeredPane_1.add(txtphealthdeduct);
 		txtphealthdeduct.setEditable(false);
 		txtphealthdeduct.setColumns(10);
 		txtphealthdeduct.setBackground(Color.WHITE);
-		txtphealthdeduct.setBounds(148, 257, 89, 14);
-		layeredPane_1.add(txtphealthdeduct);
 		
 		JLayeredPane layeredPane_1_1 = new JLayeredPane();
 		layeredPane_1_1.setBorder(new LineBorder(new Color(0, 0, 0), 2));

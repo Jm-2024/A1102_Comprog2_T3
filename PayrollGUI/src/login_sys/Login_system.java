@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Signup.Signup;
 import employee_Details.EData;
 
 import javax.swing.JLabel;
@@ -17,6 +18,17 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.Scanner;
+import java.util.regex.Matcher;
 import java.awt.event.ActionEvent;
 import java.awt.Canvas;
 
@@ -86,35 +98,6 @@ public class Login_system extends JFrame {
 		lblpass.setBounds(81, 138, 65, 14);
 		contentPane.add(lblpass);
 		
-		JButton btnLogIn = new JButton("Log In");
-		btnLogIn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				String password = txtpassword.getText();
-				String username = txtusername.getText();
-				
-				if (password.contains("king") && username.contains("one")) {
-					txtpassword.setText(null);
-					txtusername.setText(null);
-					
-					EData info = new EData();
-					EData.main(null);
-					dispose();
-					
-				}
-				else 
-				{
-					JOptionPane.showMessageDialog(null, "Invalid Log In Details","Log In error", JOptionPane.ERROR_MESSAGE);
-					txtpassword.setText(null);
-					txtusername.setText(null);
-				}
-				
-			}
-		});
-		btnLogIn.setBackground(new Color(255, 255, 255));
-		btnLogIn.setBounds(147, 163, 89, 26);
-		contentPane.add(btnLogIn);
-		
 		JButton btnExit = new JButton("Exit");
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -127,7 +110,56 @@ public class Login_system extends JFrame {
 			}
 		});
 		btnExit.setBackground(new Color(255, 255, 255));
-		btnExit.setBounds(296, 163, 89, 26);
+		btnExit.setBounds(385, 224, 89, 26);
 		contentPane.add(btnExit);
+		
+		JButton btnRegister = new JButton("Register");
+		btnRegister.setBackground(new Color(255, 255, 255));
+		btnRegister.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Signup info = new Signup();
+				Signup.main(null);
+				dispose();
+			}
+		});
+		btnRegister.setBounds(147, 165, 89, 26);
+		contentPane.add(btnRegister);
+		
+		JButton btnlogin = new JButton("Log In");
+		btnlogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					File fr = new File ("C:\\Users\\Dell_i5\\Desktop\\MMDC File\\T3CSV\\EmployeeData.txt");
+					Scanner scan = new Scanner(fr);
+					scan.useDelimiter(",");
+					
+					while(scan.nextLine() !=null){
+				        String username = scan.next();
+				        String password = scan.next();
+				        scan.next();
+					
+					if (txtusername.getText().equals(username)) {
+				        JOptionPane.showMessageDialog(null, "Username Field is empty");
+				    } else if (txtpassword.getText().equals(password)) {
+				        JOptionPane.showMessageDialog(null, "Password Field is empty");
+				    }
+					
+				               JOptionPane.showMessageDialog(null,"Username and Password is not correct");
+				
+					}
+					
+					
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+
+		});
+		btnlogin.setBackground(new Color(255, 255, 255));
+		btnlogin.setBounds(296, 165, 89, 26);
+		contentPane.add(btnlogin);
 	}
 }
